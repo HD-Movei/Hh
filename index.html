@@ -2,84 +2,468 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hhhh</title>
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://bahir369.url369x.top/bhr5jigr2/?utm_source=JiGar&amp;utm_medium=Silent">
-<meta property="og:title" content="Hhhh">
-<meta property="og:description" content="Vbbb">
-<meta property="og:image" content="https://i.ibb.co/xKC7gmvz/In-Shot-20260917-223602739.jpg">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hhhh">
-<meta name="twitter:description" content="Vbbb">
-<meta name="twitter:image" content="https://i.ibb.co/xKC7gmvz/In-Shot-20260917-223602739.jpg">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>LinkMagic Admin</title>
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #ffffff;
-    color: #24292e;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
+  :root{
+    --ink:#1a1a1a;
+    --paper:#f7f5f0;
+    --accent:#0057ff;
+    --green:#0a7d3c;
+    --line:#d8d4c8;
+    --mono: "SF Mono", "Roboto Mono", monospace;
   }
-  h1 {
-    font-size: 48px;
-    font-weight: 300;
-    margin-bottom: 10px;
-    color: #24292e;
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    line-height:1.5;
   }
-  p {
-    font-size: 14px;
-    color: #586069;
-    max-width: 500px;
-    line-height: 1.5;
-    margin: 8px 0;
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    padding:28px 20px 60px;
   }
-  a {
-    color: #0366d6;
-    text-decoration: none;
+  h1{
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    margin:0 0 4px;
   }
-  a:hover {
-    text-decoration: underline;
+  .sub{
+    font-size:14px;
+    color:#6b6858;
+    margin:0 0 20px;
   }
-  .octocat {
-    margin-top: 20px;
-    opacity: 0.8;
+  .tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:20px;
+    border-bottom:1.5px solid var(--line);
   }
+  .tab{
+    padding:10px 4px;
+    font-size:14px;
+    font-weight:600;
+    color:#8a8672;
+    cursor:pointer;
+    border-bottom:2px solid transparent;
+    margin-bottom:-1.5px;
+  }
+  .tab.active{
+    color:var(--ink);
+    border-bottom-color:var(--accent);
+  }
+  .panel{display:none;}
+  .panel.active{display:block;}
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin:16px 0 6px;
+  }
+  input, textarea{
+    width:100%;
+    padding:10px 12px;
+    border:1.5px solid var(--line);
+    border-radius:6px;
+    background:#fff;
+    font-size:15px;
+    font-family:inherit;
+    color:var(--ink);
+  }
+  input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+  }
+  textarea{resize:vertical; min-height:60px;}
+  button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:6px;
+    background:var(--accent);
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  button:active{opacity:0.85;}
+  button.secondary{
+    background:transparent;
+    border:1.5px solid var(--line);
+    color:var(--ink);
+    margin-top:10px;
+  }
+  button.danger{
+    background:transparent;
+    border:1.5px solid #d94040;
+    color:#d94040;
+  }
+  .out{
+    margin-top:20px;
+    display:none;
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    padding:14px;
+  }
+  .out.show{display:block;}
+  .out-label{
+    font-size:12px;
+    font-weight:600;
+    color:#6b6858;
+    margin-bottom:6px;
+  }
+  .link-box{
+    font-family:var(--mono);
+    font-size:13px;
+    background:var(--paper);
+    padding:10px;
+    border-radius:6px;
+    word-break:break-all;
+    margin-bottom:10px;
+  }
+  .card{
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    padding:14px;
+    margin-bottom:12px;
+  }
+  .card-title{
+    font-weight:700;
+    font-size:15px;
+    margin-bottom:2px;
+  }
+  .card-target{
+    font-size:12px;
+    color:#6b6858;
+    font-family:var(--mono);
+    word-break:break-all;
+    margin-bottom:10px;
+  }
+  .card-actions{
+    display:flex;
+    gap:8px;
+  }
+  .card-actions button{
+    margin:0;
+    padding:8px;
+    font-size:12px;
+    flex:1;
+  }
+  .empty{
+    text-align:center;
+    color:#8a8672;
+    font-size:14px;
+    padding:30px 10px;
+  }
+  .hint{
+    font-size:12px;
+    color:#8a8672;
+    margin-top:4px;
+  }
+  .status{
+    font-size:13px;
+    margin-top:10px;
+    display:none;
+    padding:8px 10px;
+    border-radius:6px;
+  }
+  .status.show{display:block;}
+  .status.ok{color:var(--green); background:#e8f5ec;}
+  .status.err{color:#d94040; background:#fdeaea;}
 </style>
 </head>
 <body>
+<div class="wrap">
+  <h1>LinkMagic Admin</h1>
+  <p class="sub">Link banao, aur jab chaho target URL edit karo — link wahi rehta hai.</p>
 
-  <h1>404</h1>
-  <p style="font-weight: 600; color: #24292e;">File not found</p>
-  <p>The site configured at this address does not contain the requested file.</p>
-  <p>If this is your site, make sure that the filename case matches the URL as well as any file permissions.</p>
-  <p>For root URLs (like <code>http://example.com/</code>) you must provide an <code>index.html</code> file.</p>
-  <p><a href="https://pages.github.com/">Read the full documentation</a> for more information about using GitHub Pages.</p>
-  
-  <div class="octocat">
-    <!-- GitHub Icon SVG -->
-    <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill="#586069" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+  <div class="tabs">
+    <div class="tab active" data-tab="create">Naya Link</div>
+    <div class="tab" data-tab="manage">Mere Links</div>
   </div>
 
-<script>
-  // 3 seconds baad target URL par redirect ho jayega
-  setTimeout(function () {
-    window.location.href = "https://bahir369.url369x.top/bhr5jigr2/?utm_source=JiGar&utm_medium=Silent";
-  }, 3000);
-</script>
+  <!-- CREATE PANEL -->
+  <div class="panel active" id="panel-create">
+    <label for="c-title">Title</label>
+    <input id="c-title" placeholder="e.g. My Facebook Page">
 
+    <label for="c-desc">Description</label>
+    <textarea id="c-desc" placeholder="Short description for preview"></textarea>
+
+    <label for="c-image">Image URL</label>
+    <input id="c-image" placeholder="https://...jpg">
+    <input type="file" id="c-image-file" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
+    <button type="button" class="secondary" onclick="document.getElementById('c-image-file').click()">Gallery se Image Choose Karo</button>
+    <div class="status" id="upload-status"></div>
+
+    <label for="c-target">Target URL (jahan click pe jayega)</label>
+    <input id="c-target" placeholder="https://example.com">
+
+    <button onclick="createLink()">Link Banao</button>
+    <div class="status" id="create-status"></div>
+
+    <div class="out" id="create-out">
+      <div class="out-label">Filename (isi naam se GitHub pe upload karo)</div>
+      <div class="link-box" id="final-filename"></div>
+      <button class="secondary" onclick="downloadHtmlFile()">HTML File Download Karo</button>
+      <div class="out-label" style="margin-top:14px;">Final Link (upload ke baad yeh Facebook pe post karo)</div>
+      <div class="link-box" id="final-link"></div>
+      <button class="secondary" onclick="copyFinalLink()">Link Copy Karo</button>
+      <p class="hint">File download karke GitHub repo mein isi naam se upload karo. Koi redirect message nahi hoga — click karte hi turant target khulega, aur image bhi preview mein dikhegi.</p>
+    </div>
+  </div>
+
+  <!-- MANAGE PANEL -->
+  <div class="panel" id="panel-manage">
+    <div id="manage-list"></div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://lgogrnuocpxzhydbanyz.supabase.co";
+const SUPABASE_KEY = "sb_publishable_JU8UB5FJrQY81Gxpm7ZkuQ_DslfF9p9";
+const REDIRECT_BASE = "https://hd-movei.github.io/Fzankhan"; // GitHub Pages repo URL
+const IMGBB_KEY = "3502d3c0f0c5dd331bab4e800ae48fac";
+
+function genId(){
+  return Math.random().toString(36).substring(2, 8);
+}
+
+async function handleImageUpload(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const statusEl = document.getElementById('upload-status');
+  statusEl.textContent = 'Upload ho raha hai...';
+  statusEl.className = 'status show';
+  statusEl.style.color = '#0057ff';
+  statusEl.style.background = '#eaf0ff';
+
+  try{
+    const base64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    const formData = new FormData();
+    formData.append('image', base64);
+
+    const res = await fetch('https://api.imgbb.com/1/upload?key=' + IMGBB_KEY, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+
+    if(data.success){
+      document.getElementById('c-image').value = data.data.url;
+      statusEl.textContent = 'Image upload ho gayi!';
+      statusEl.className = 'status show ok';
+    } else {
+      throw new Error('Upload failed');
+    }
+  }catch(e){
+    statusEl.textContent = 'Error: image upload nahi hui. URL manually daal do.';
+    statusEl.className = 'status show err';
+  }
+}
+
+async function supabaseRequest(path, options = {}){
+  const url = SUPABASE_URL + '/rest/v1/' + path;
+  const headers = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': 'Bearer ' + SUPABASE_KEY,
+    'Content-Type': 'application/json',
+    ...(options.headers || {})
+  };
+  const res = await fetch(url, { ...options, headers });
+  if(!res.ok){
+    const text = await res.text();
+    throw new Error(text || res.statusText);
+  }
+  if(res.status === 204) return null;
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
+}
+
+// ---- tabs ----
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    if(tab.dataset.tab === 'manage') renderManageList();
+  });
+});
+
+// ---- create link ----
+let lastFinalUrl = '';
+let lastFilename = '';
+let lastFileContent = '';
+
+function esc(s){
+  return (s||"").replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+function slugify(s){
+  return (s||'post').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').substring(0,30) || 'post';
+}
+
+async function createLink(){
+  const title = document.getElementById('c-title').value.trim() || 'Untitled';
+  const desc = document.getElementById('c-desc').value.trim();
+  const image = document.getElementById('c-image').value.trim();
+  const target = document.getElementById('c-target').value.trim();
+  const statusEl = document.getElementById('create-status');
+
+  if(!target){
+    statusEl.textContent = 'Target URL zaroori hai';
+    statusEl.className = 'status show err';
+    return;
+  }
+
+  const id = genId();
+  const filename = slugify(title) + '-' + id + '.html';
+  const finalUrl = REDIRECT_BASE + '/' + filename;
+
+  const html = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${esc(title)}</title>
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:image" content="${esc(image)}">
+<meta property="og:url" content="${esc(finalUrl)}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${esc(image)}">
+<script>window.location.replace(${JSON.stringify(target)});<\/script>
+</head>
+<body>
+</body>
+</html>`;
+
+  try{
+    await supabaseRequest('links', {
+      method: 'POST',
+      body: JSON.stringify({ id, title, description: desc, image, target })
+    });
+  }catch(e){
+  }
+
+  lastFilename = filename;
+  lastFileContent = html;
+  lastFinalUrl = finalUrl;
+
+  document.getElementById('final-filename').textContent = filename;
+  document.getElementById('final-link').textContent = finalUrl;
+  document.getElementById('create-out').classList.add('show');
+  statusEl.textContent = 'File taiyar hai! Pehle download karo, phir GitHub pe upload karo.';
+  statusEl.className = 'status show ok';
+
+  document.getElementById('c-title').value = '';
+  document.getElementById('c-desc').value = '';
+  document.getElementById('c-image').value = '';
+  document.getElementById('c-target').value = '';
+}
+
+function downloadHtmlFile(){
+  const blob = new Blob([lastFileContent], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = lastFilename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function copyFinalLink(){
+  navigator.clipboard.writeText(lastFinalUrl).then(()=>{
+    event.target.textContent = 'Copied!';
+    setTimeout(()=>event.target.textContent = 'Link Copy Karo', 1200);
+  });
+}
+
+
+// ---- manage list ----
+function escapeHtml(s){
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+async function renderManageList(){
+  const listEl = document.getElementById('manage-list');
+  listEl.innerHTML = '<div class="empty">Loading...</div>';
+
+  try{
+    const links = await supabaseRequest('links?select=*&order=id.desc');
+
+    if(!links || links.length === 0){
+      listEl.innerHTML = '<div class="empty">Abhi koi link nahi bana. "Naya Link" tab mein ja kar banao.</div>';
+      return;
+    }
+
+    listEl.innerHTML = '';
+    for(const data of links){
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-title">${escapeHtml(data.title)}</div>
+        <div class="card-target">→ ${escapeHtml(data.target)}</div>
+        <div class="card-target">Link: ${REDIRECT_BASE}?id=${data.id}</div>
+        <div class="card-actions">
+          <button class="secondary" onclick="editLink('${data.id}')">Edit Target</button>
+          <button class="danger" onclick="removeLink('${data.id}')">Delete</button>
+        </div>
+      `;
+      listEl.appendChild(card);
+    }
+  }catch(e){
+    listEl.innerHTML = '<div class="empty">Error loading links: ' + escapeHtml(e.message) + '</div>';
+  }
+}
+
+async function editLink(id){
+  try{
+    const links = await supabaseRequest('links?id=eq.' + id + '&select=*');
+    const data = links && links[0];
+    if(!data) return;
+    const newTarget = prompt('Naya Target URL daalo:', data.target);
+    if(newTarget === null || newTarget.trim() === '') return;
+
+    await supabaseRequest('links?id=eq.' + id, {
+      method: 'PATCH',
+      body: JSON.stringify({ target: newTarget.trim() })
+    });
+    renderManageList();
+  }catch(e){
+    alert('Error: ' + e.message);
+  }
+}
+
+async function removeLink(id){
+  if(!confirm('Yeh link delete karna hai?')) return;
+  try{
+    await supabaseRequest('links?id=eq.' + id, { method: 'DELETE' });
+    renderManageList();
+  }catch(e){
+    alert('Error: ' + e.message);
+  }
+}
+</script>
 </body>
 </html>
